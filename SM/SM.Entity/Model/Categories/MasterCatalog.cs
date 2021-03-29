@@ -1,8 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SM.Entity.IHasTimes;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace SM.Entity.Model.System
 {
-    public class MasterCatalog : IdentityModel
+    public class MasterCatalog : IdentityModel, IHasTimestamps
     {
         [Key]
         public int Id { get; set; }
@@ -22,5 +24,10 @@ namespace SM.Entity.Model.System
 
         [StringLength(250)]
         public string Describe { get; set; }
+
+        public DateTime? Added { get; set; }
+        public DateTime? Modified { get; set; }
+        public DateTime? Deleted { get; set; }
+        public override string ToString() => $"MasterCatalog {Id}{this.ToStampString()}";
     }
 }

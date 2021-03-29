@@ -17,6 +17,7 @@ namespace SM.Entity
         public virtual DbSet<LogError> LogErrors { get; set; }
         public virtual DbSet<LogActivity> LogActivities { get; set; }
         public virtual DbSet<LogHistory> LogHistories { get; set; }
+        public virtual DbSet<MasterCatalog> MasterCatalogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -98,15 +99,37 @@ namespace SM.Entity
                 {
                     case EntityState.Deleted:
                         entityWithTimestamps.Deleted = DateTime.UtcNow;
-                        Console.WriteLine($"Stamped for delete: {e.Entry.Entity}");
+                        e.Entry.Context.Set<LogHistory>().Add(
+                        new LogHistory
+                        {
+                            LogContent = $"Stamped for delete: {e.Entry.Entity}",
+                            Functional = "Deleted",
+                            IP = "127.0.0.1",
+                            UserName = "Administrator"
+                        });
+                        //e.Entry.State = EntityState.Added;
                         break;
                     case EntityState.Modified:
                         entityWithTimestamps.Modified = DateTime.UtcNow;
-                        Console.WriteLine($"Stamped for update: {e.Entry.Entity}");
+                        e.Entry.Context.Set<LogHistory>().Add(
+                        new LogHistory
+                        {
+                            LogContent = $"Stamped for update: {e.Entry.Entity}",
+                            Functional = "Updated",
+                            IP = "127.0.0.1",
+                            UserName = "Administrator"
+                        });
                         break;
                     case EntityState.Added:
                         entityWithTimestamps.Added = DateTime.UtcNow;
-                        Console.WriteLine($"Stamped for insert: {e.Entry.Entity}");
+                        e.Entry.Context.Set<LogHistory>().Add(
+                        new LogHistory
+                        {
+                            LogContent = $"Stamped for insert: {e.Entry.Entity}",
+                            Functional = "Added",
+                            IP = "127.0.0.1",
+                            UserName = "Administrator"
+                        });
                         break;
                 }
             }
