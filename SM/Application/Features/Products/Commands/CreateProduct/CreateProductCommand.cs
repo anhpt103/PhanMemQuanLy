@@ -13,7 +13,7 @@ namespace Application.Features.Products.Commands.CreateProduct
         public string Name { get; set; }
         public string Barcode { get; set; }
         public string Description { get; set; }
-        public decimal Rate { get; set; }
+        public int Rate { get; set; }
     }
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Response<int>>
     {
