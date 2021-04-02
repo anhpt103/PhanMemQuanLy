@@ -7,12 +7,10 @@ namespace Domain.Entities
     {
         [ForeignKey("Master")]
         [Required]
-        public long MasterId { get; set; }
+        public int MasterId { get; set; }
 
         [StringLength(3)]
         [Required]
         public string UnitCode { get; set; }
-
-        public virtual Master Master { get; set; }
     }
 }

@@ -5,7 +5,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Features.Products.Commands.UpdateProduct
+namespace Application.Features.Masters.Commands.UpdateMaster
 {
     public class UpdateMasterCommand : IRequest<Response<int>>
     {

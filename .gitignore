@@ -1,3 +1,15 @@
 /SM/SM.Entity/obj
 /SM/SM.Entity/bin
 /SM/.vs
+/SM/Application/bin
+/SM/Application/obj
+/SM/Domain/bin
+/SM/Domain/obj
+/SM/Infrastructure.Identity/obj
+/SM/Infrastructure.Identity/bin
+/SM/Infrastructure.Persistence/bin
+/SM/Infrastructure.Persistence/obj
+/SM/Infrastructure.Shared/bin
+/SM/Infrastructure.Shared/obj
+/SM/SM.WebApi/bin
+/SM/SM.WebApi/obj

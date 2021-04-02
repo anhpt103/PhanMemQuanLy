@@ -13,12 +13,13 @@ namespace Infrastructure.Identity.Seeds
             //Seed Default User
             var defaultUser = new ApplicationUser
             {
-                UserName = "anhpt",
+                UserName = "supperadmin",
                 Email = "phamtuananh103@gmail.com",
                 FirstName = "Phạm",
                 LastName = "Tuấn Anh",
                 EmailConfirmed = true,
-                PhoneNumberConfirmed = true
+                PhoneNumberConfirmed = true,
+                UnitCode = "000"
             };
             if (userManager.Users.All(u => u.Id != defaultUser.Id))
             {

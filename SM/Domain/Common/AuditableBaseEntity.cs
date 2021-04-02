@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Common
 {
@@ -9,16 +8,18 @@ namespace Domain.Common
     {
         [Key]
         public virtual int Id { get; set; }
-        public string CreatedBy { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [StringLength(50)]
+        public string CreatedBy { get; set; }
         public DateTime Created { get; set; }
         public string LastModifiedBy { get; set; }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime? LastModified { get; set; }
 
         [Description("XÓA LOGIC 0: CHƯA XÓA _ 1: ĐÃ XÓA")]
         public bool IsDelete { get; set; }
+
+        [StringLength(3)]
+        [Required]
+        public string UnitCode { get; set; }
     }
 }

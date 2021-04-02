@@ -72,6 +72,7 @@ namespace Infrastructure.Identity.Services
             response.IsVerified = user.EmailConfirmed;
             var refreshToken = GenerateRefreshToken(ipAddress);
             response.RefreshToken = refreshToken.Token;
+            response.UnitCode = user.UnitCode;
             return new Response<AuthenticationResponse>(response, $"Authenticated {user.UserName}");
         }
 
@@ -132,7 +133,8 @@ namespace Infrastructure.Identity.Services
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim("uid", user.Id),
-                new Claim("ip", ipAddress)
+                new Claim("ip", ipAddress),
+                new Claim("unit", user.UnitCode)
             }
             .Union(userClaims)
             .Union(roleClaims);

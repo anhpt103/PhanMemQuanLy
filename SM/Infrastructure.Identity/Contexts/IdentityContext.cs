@@ -23,6 +23,7 @@ namespace Infrastructure.Identity.Contexts
             {
                 entity.ToTable(name: "Role");
             });
+
             builder.Entity<IdentityUserRole<string>>(entity =>
             {
                 entity.ToTable("UserRoles");

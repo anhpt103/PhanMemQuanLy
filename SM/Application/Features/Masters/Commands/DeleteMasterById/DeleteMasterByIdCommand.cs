@@ -5,7 +5,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Features.Masters.Commands.DeleteProductById
+namespace Application.Features.Masters.Commands.DeleteMasterById
 {
     public class DeleteMasterByIdCommand : IRequest<Response<int>>
     {

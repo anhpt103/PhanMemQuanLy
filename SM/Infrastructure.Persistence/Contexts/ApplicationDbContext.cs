@@ -37,6 +37,7 @@ namespace Infrastructure.Persistence.Contexts
                         entry.Entity.Created = _dateTime.NowUtc;
                         entry.Entity.CreatedBy = _authenticatedUser.UserId;
                         entry.Entity.IsDelete = false;
+                        entry.Entity.UnitCode = _authenticatedUser.UnitCode;
                         break;
                     case EntityState.Modified:
                         entry.Entity.LastModified = _dateTime.NowUtc;
@@ -106,6 +107,13 @@ namespace Infrastructure.Persistence.Contexts
             builder.Entity<Master>()
             .Property(e => e.Key)
             .IsUnicode(false);
+
+            // Ignore column UnitCode in table Master
+            builder.Entity<Master>()
+            .Ignore(a => a.UnitCode);
+
+            builder.Entity<MasterUnit>()
+            .HasKey(a => new { a.MasterId, a.UnitCode });
 
             base.OnModelCreating(builder);
         }

@@ -7,3 +7,20 @@ dotnet ef database update --startup-project ../SM.WebApi/SM.WebApi.csproj -c "Id
 Step 2: cd to SM.Infrastructure.Persistence and run
 dotnet ef migrations add Initial --startup-project ../SM.WebApi/SM.WebApi.csproj -c "ApplicationDbContext"
 dotnet ef database update --startup-project ../SM.WebApi/SM.WebApi.csproj -c "ApplicationDbContext"
+
+
+https://localhost:44384/api/Account/authenticate
+{
+    "Email": "anhpt103@outlook.com",
+    "Password": "123!@#Pa$$word!"
+}
+
+https://localhost:44384/api/v1/Master
+{
+    "TypeMasters": 1,
+    "Key": "A",
+    "Value": "Industry A",
+    "Parent": null,
+    "Describe": "Ngành hàng A",
+    "UnitCode": "001"
+}

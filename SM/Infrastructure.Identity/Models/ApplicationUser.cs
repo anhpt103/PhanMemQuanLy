@@ -1,6 +1,7 @@
 ﻿using Application.DTOs.Account;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Infrastructure.Identity.Models
 {
@@ -13,5 +14,7 @@ namespace Infrastructure.Identity.Models
         {
             return this.RefreshTokens?.Find(x => x.Token == token) != null;
         }
+        [StringLength(3)]
+        public string UnitCode { get; set; }
     }
 }

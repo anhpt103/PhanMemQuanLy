@@ -21,7 +21,5 @@ namespace Domain.Entities
 
         [StringLength(250)]
         public string Describe { get; set; }
-
-        public virtual MasterUnit UnitCode { get; set; }
     }
 }

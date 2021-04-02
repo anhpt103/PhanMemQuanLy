@@ -18,7 +18,8 @@ namespace Infrastructure.Identity.Seeds
                 FirstName = "Phạm",
                 LastName = "Tuấn Anh",
                 EmailConfirmed = true,
-                PhoneNumberConfirmed = true
+                PhoneNumberConfirmed = true,
+                UnitCode = "000"
             };
             if (userManager.Users.All(u => u.Id != defaultUser.Id))
             {
