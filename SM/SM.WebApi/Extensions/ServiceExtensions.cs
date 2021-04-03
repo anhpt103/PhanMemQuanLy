@@ -16,12 +16,12 @@ namespace SM.WebApi.Extensions
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Clean Architecture - WebApi",
+                    Title = "Sales Manage - WebApi",
                     Description = "This Api will be responsible for overall data distribution and authorization.",
                     Contact = new OpenApiContact
                     {
-                        Name = "codewithmukesh",
-                        Email = "hello@codewithmukesh.com",
+                        Name = "AnhPT",
+                        Email = "phamtuananh10394@gmail.com",
                         Url = new Uri("https://codewithmukesh.com/contact"),
                     }
                 });

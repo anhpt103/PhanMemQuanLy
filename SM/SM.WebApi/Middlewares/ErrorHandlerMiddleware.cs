@@ -1,4 +1,5 @@
 ﻿using Application.Exceptions;
+using Application.Interfaces.Repositories;
 using Application.Wrappers;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -18,7 +19,7 @@ namespace SM.WebApi.Middlewares
             _next = next;
         }
 
-        public async Task Invoke(HttpContext context)
+        public async Task Invoke(HttpContext context, ILogErrorRepositoryAsync logError)
         {
             try
             {
@@ -29,17 +30,18 @@ namespace SM.WebApi.Middlewares
                 var response = context.Response;
                 response.ContentType = "application/json";
                 var responseModel = new Response<string>() { Succeeded = false, Message = error?.Message };
-
                 switch (error)
                 {
                     case ApiException e:
                         // custom application error
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        await logError.WriteLog(e.Message, "BadRequest");
                         break;
                     case ValidationException e:
                         // custom application error
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
                         responseModel.Errors = e.Errors;
+                        await logError.WriteLog(JsonSerializer.Serialize(e.Errors), "ValidationException-BadRequest");
                         break;
                     case KeyNotFoundException e:
                         // not found error
@@ -48,10 +50,10 @@ namespace SM.WebApi.Middlewares
                     default:
                         // unhandled error
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        await logError.WriteLog(error.Message, "InternalServerError");
                         break;
                 }
                 var result = JsonSerializer.Serialize(responseModel);
-
                 await response.WriteAsync(result);
             }
         }

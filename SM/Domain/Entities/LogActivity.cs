@@ -8,6 +8,8 @@ namespace Domain.Entities
     {
         [Key]
         public long Id { get; set; }
+
+        [StringLength(2000)]
         public string LogContent { get; set; }
 
         [StringLength(50)]

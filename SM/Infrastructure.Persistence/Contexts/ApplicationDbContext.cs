@@ -26,7 +26,7 @@ namespace Infrastructure.Persistence.Contexts
         public DbSet<Image> Images { get; set; }
         public DbSet<Master> Masters { get; set; }
         public DbSet<MasterUnit> MasterUnits { get; set; }
-
+        
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in ChangeTracker.Entries<AuditableBaseEntity>())

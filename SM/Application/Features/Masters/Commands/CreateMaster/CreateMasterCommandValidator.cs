@@ -13,15 +13,16 @@ namespace Application.Features.Masters.Commands.CreateMaster
         {
             this.masterRepository = masterRepository;
 
-            RuleFor(p => p.TypeMasters)
+            RuleFor(m => m.TypeMasters)
                 .NotEmpty().WithMessage("{PropertyName} is required.");
 
-            RuleFor(p => p.Key)
+            RuleFor(m => m.Key)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
+                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.")
+                .Matches(@"^[\ A-Za-z0-9]$").WithMessage("{PropertyName} does not allow special character.");
 
-            RuleFor(p => p.Value)
+            RuleFor(m => m.Value)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .MaximumLength(500).WithMessage("{PropertyName} must not exceed 500 characters.");
