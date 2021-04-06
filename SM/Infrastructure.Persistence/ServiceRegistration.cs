@@ -27,10 +27,11 @@ namespace Infrastructure.Persistence
             }
             #region Repositories
             services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
+            services.AddTransient<ILogErrorRepositoryAsync, LogErrorRepositoryAsync>();
             services.AddTransient<IProductRepositoryAsync, ProductRepositoryAsync>();
             services.AddTransient<IMasterRepositoryAsync, MasterRepositoryAsync>();
             services.AddTransient<IMasterUnitRepositoryAsync, MasterUnitRepositoryAsync>();
-            services.AddTransient<ILogErrorRepositoryAsync, LogErrorRepositoryAsync>();
+            services.AddTransient<IUnitCodeRepositoryAsync, UnitCodeRepositoryAsync>();
             #endregion
         }
     }

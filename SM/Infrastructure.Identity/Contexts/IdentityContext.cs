@@ -19,11 +19,6 @@ namespace Infrastructure.Identity.Contexts
                 entity.ToTable(name: "User");
             });
 
-            builder.Entity<DbOption>(entity =>
-            {
-                entity.ToTable(name: "DbOption");
-            });
-
             builder.Entity<IdentityRole>(entity =>
             {
                 entity.ToTable(name: "Role");

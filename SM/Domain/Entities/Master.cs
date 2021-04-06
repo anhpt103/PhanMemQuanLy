@@ -17,7 +17,7 @@ namespace Domain.Entities
         [Required]
         public string Value { get; set; }
 
-        public long? Parent { get; set; }
+        public int? Parent { get; set; }
 
         [StringLength(250)]
         public string Describe { get; set; }

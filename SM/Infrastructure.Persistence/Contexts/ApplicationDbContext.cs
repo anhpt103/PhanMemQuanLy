@@ -26,7 +26,8 @@ namespace Infrastructure.Persistence.Contexts
         public DbSet<Image> Images { get; set; }
         public DbSet<Master> Masters { get; set; }
         public DbSet<MasterUnit> MasterUnits { get; set; }
-        
+        public DbSet<UnitCode> UnitCodes { get; set; }
+
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in ChangeTracker.Entries<AuditableBaseEntity>())
@@ -38,6 +39,22 @@ namespace Infrastructure.Persistence.Contexts
                         entry.Entity.CreatedBy = _authenticatedUser.UserId;
                         entry.Entity.IsDelete = false;
                         entry.Entity.UnitCode = _authenticatedUser.UnitCode;
+                        break;
+                    case EntityState.Modified:
+                        entry.Entity.LastModified = _dateTime.NowUtc;
+                        entry.Entity.LastModifiedBy = _authenticatedUser.UserId;
+                        break;
+                }
+            }
+
+            foreach (var entry in ChangeTracker.Entries<UnitCode>())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.Entity.Created = _dateTime.NowUtc;
+                        entry.Entity.CreatedBy = _authenticatedUser.UserId;
+                        entry.Entity.IsDelete = false;
                         break;
                     case EntityState.Modified:
                         entry.Entity.LastModified = _dateTime.NowUtc;

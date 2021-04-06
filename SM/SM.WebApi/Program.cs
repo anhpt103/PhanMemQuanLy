@@ -1,3 +1,4 @@
+using Application.Interfaces.Repositories;
 using Infrastructure.Identity.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -37,6 +38,10 @@ namespace SM.WebApi
                     await Infrastructure.Identity.Seeds.DefaultRoles.SeedAsync(userManager, roleManager);
                     await Infrastructure.Identity.Seeds.DefaultSuperAdmin.SeedAsync(userManager, roleManager);
                     await Infrastructure.Identity.Seeds.DefaultBasicUser.SeedAsync(userManager, roleManager);
+
+                    var unitCodeRepository = services.GetRequiredService<IUnitCodeRepositoryAsync>();
+                    await Infrastructure.Persistence.Seeds.DefaultUnitCode.SeedAsync(unitCodeRepository);
+
                     Log.Information("Finished Seeding Default Data");
                     Log.Information("Application Starting");
                 }

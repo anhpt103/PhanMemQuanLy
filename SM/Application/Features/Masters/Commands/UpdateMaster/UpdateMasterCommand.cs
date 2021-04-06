@@ -11,7 +11,7 @@ namespace Application.Features.Masters.Commands.UpdateMaster
     {
         public int Id { get; set; }
         public string Value { get; set; }
-        public long? Parent { get; set; }
+        public int? Parent { get; set; }
         public string Describe { get; set; }
         public class UpdateMasterCommandHandler : IRequestHandler<UpdateMasterCommand, Response<int>>
         {
