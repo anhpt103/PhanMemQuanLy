@@ -1,4 +1,4 @@
-﻿using Application.Constants;
+﻿using Application.Enums;
 using Application.Interfaces.Repositories;
 using Domain.Entities;
 using System.Threading.Tasks;
@@ -12,7 +12,7 @@ namespace Infrastructure.Persistence.Seeds
             // Seed Default UnitCode
             var defaultUnicode = new UnitCode
             {
-                Id = UnitCodes.ROOT_UNITCODE,
+                Id = (int)UnitCodes.ROOT_UNITCODE,
                 Name = "Quản trị phần mềm",
                 PhoneNumber = "033.248.7344",
                 Address = "Thanh Trì - Hà Nội",

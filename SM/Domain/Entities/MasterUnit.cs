@@ -9,8 +9,7 @@ namespace Domain.Entities
         [Required]
         public int MasterId { get; set; }
 
-        [StringLength(3)]
         [Required]
-        public string UnitCode { get; set; }
+        public int UnitCode { get; set; }
     }
 }

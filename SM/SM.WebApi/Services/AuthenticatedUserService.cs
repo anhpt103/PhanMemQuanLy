@@ -9,11 +9,12 @@ namespace SM.WebApi.Services
         public AuthenticatedUserService(IHttpContextAccessor httpContextAccessor)
         {
             UserId = httpContextAccessor.HttpContext?.User?.FindFirstValue("uid");
-            UnitCode = httpContextAccessor.HttpContext?.User?.FindFirstValue("unit");
+            int.TryParse(httpContextAccessor.HttpContext?.User?.FindFirstValue("unit"), out int unit);
+            UnitCode = unit;
         }
 
         public string UserId { get; }
 
-        public string UnitCode { get; }
+        public int UnitCode { get; }
     }
 }

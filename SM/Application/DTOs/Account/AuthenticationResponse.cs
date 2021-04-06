@@ -13,6 +13,6 @@ namespace Application.DTOs.Account
         public string JWToken { get; set; }
         [JsonIgnore]
         public string RefreshToken { get; set; }
-        public string UnitCode { get; set; }
+        public int UnitCode { get; set; }
     }
 }

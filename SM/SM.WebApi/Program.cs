@@ -36,8 +36,8 @@ namespace SM.WebApi
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
                     await Infrastructure.Identity.Seeds.DefaultRoles.SeedAsync(userManager, roleManager);
-                    await Infrastructure.Identity.Seeds.DefaultSuperAdmin.SeedAsync(userManager, roleManager);
-                    await Infrastructure.Identity.Seeds.DefaultBasicUser.SeedAsync(userManager, roleManager);
+                    await Infrastructure.Identity.Seeds.DefaultSuperAdmin.SeedAsync(userManager);
+                    await Infrastructure.Identity.Seeds.DefaultBasicUser.SeedAsync(userManager);
 
                     var unitCodeRepository = services.GetRequiredService<IUnitCodeRepositoryAsync>();
                     await Infrastructure.Persistence.Seeds.DefaultUnitCode.SeedAsync(unitCodeRepository);

@@ -134,7 +134,7 @@ namespace Infrastructure.Identity.Services
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim("uid", user.Id),
                 new Claim("ip", ipAddress),
-                new Claim("unit", user.UnitCode)
+                new Claim("unit", user.UnitCode.ToString())
             }
             .Union(userClaims)
             .Union(roleClaims);

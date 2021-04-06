@@ -8,7 +8,7 @@ namespace Infrastructure.Identity.Seeds
 {
     public static class DefaultSuperAdmin
     {
-        public static async Task SeedAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public static async Task SeedAsync(UserManager<ApplicationUser> userManager)
         {
             //Seed Default User
             var defaultUser = new ApplicationUser
@@ -19,7 +19,7 @@ namespace Infrastructure.Identity.Seeds
                 LastName = "Tuấn Anh",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
-                UnitCode = "000"
+                UnitCode = (int)UnitCodes.ROOT_UNITCODE
             };
             if (userManager.Users.All(u => u.Id != defaultUser.Id))
             {

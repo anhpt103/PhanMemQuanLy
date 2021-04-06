@@ -3,6 +3,6 @@
     public interface IAuthenticatedUserService
     {
         string UserId { get; }
-        string UnitCode { get; }
+        int UnitCode { get; }
     }
 }

@@ -18,8 +18,7 @@ namespace Domain.Common
         [Description("XÓA LOGIC 0: CHƯA XÓA _ 1: ĐÃ XÓA")]
         public bool IsDelete { get; set; }
 
-        [StringLength(3)]
         [Required]
-        public string UnitCode { get; set; }
+        public int UnitCode { get; set; }
     }
 }

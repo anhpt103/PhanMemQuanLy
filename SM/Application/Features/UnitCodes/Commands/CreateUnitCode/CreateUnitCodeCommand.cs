@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.UnitCodes.Commands.CreateUnitCode
 {
-    public partial class CreateUnitCodeCommand : IRequest<Response<string>>
+    public partial class CreateUnitCodeCommand : IRequest<Response<int>>
     {
         public string Name { get; set; }
         public string Parent { get; set; }
@@ -17,7 +17,7 @@ namespace Application.Features.UnitCodes.Commands.CreateUnitCode
         public string Describe { get; set; }
         public string CreatedBy { get; set; }
     }
-    public class CreateUnitCodeCommandHandler : IRequestHandler<CreateUnitCodeCommand, Response<string>>
+    public class CreateUnitCodeCommandHandler : IRequestHandler<CreateUnitCodeCommand, Response<int>>
     {
         private readonly IUnitCodeRepositoryAsync _unitCodeRepository;
         private readonly IMapper _mapper;
@@ -27,14 +27,12 @@ namespace Application.Features.UnitCodes.Commands.CreateUnitCode
             _mapper = mapper;
         }
 
-        public async Task<Response<string>> Handle(CreateUnitCodeCommand request, CancellationToken cancellationToken)
+        public async Task<Response<int>> Handle(CreateUnitCodeCommand request, CancellationToken cancellationToken)
         {
             var unitcode = _mapper.Map<UnitCode>(request);
-            unitcode.Id = await _unitCodeRepository.GenerateUnitCode(unitcode.Parent);
-
             await _unitCodeRepository.AddAsync(unitcode);
 
-            return new Response<string>(unitcode.Id);
+            return new Response<int>(unitcode.Id);
         }
     }
 }

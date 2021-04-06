@@ -21,7 +21,7 @@ namespace SM.WebApi.Controllers.v1
         // PUT api/<controller>/5
         [HttpPut("{id}")]
         [Authorize]
-        public async Task<IActionResult> Put(string id, UpdateUnitCodeCommand command)
+        public async Task<IActionResult> Put(int id, UpdateUnitCodeCommand command)
         {
             if (id != command.Id)
             {
@@ -33,7 +33,7 @@ namespace SM.WebApi.Controllers.v1
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
         [Authorize]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
             return Ok(await Mediator.Send(new DeleteUnitCodeByIdCommand { Id = id }));
         }

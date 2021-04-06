@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace Application.Features.UnitCodes.Commands.DeleteUnitCodeById
 {
-    public class DeleteUnitCodeByIdCommand : IRequest<Response<string>>
+    public class DeleteUnitCodeByIdCommand : IRequest<Response<int>>
     {
-        public string Id { get; set; }
-        public class DeleteUnitCodeByIdCommandHandler : IRequestHandler<DeleteUnitCodeByIdCommand, Response<string>>
+        public int Id { get; set; }
+        public class DeleteUnitCodeByIdCommandHandler : IRequestHandler<DeleteUnitCodeByIdCommand, Response<int>>
         {
             private readonly IUnitCodeRepositoryAsync _unitCodeRepository;
             public DeleteUnitCodeByIdCommandHandler(IUnitCodeRepositoryAsync unitCodeRepository)
             {
                 _unitCodeRepository = unitCodeRepository;
             }
-            public async Task<Response<string>> Handle(DeleteUnitCodeByIdCommand command, CancellationToken cancellationToken)
+            public async Task<Response<int>> Handle(DeleteUnitCodeByIdCommand command, CancellationToken cancellationToken)
             {
                 var unitcode = await _unitCodeRepository.GetUnitCodeByIdAsync(command.Id);
                 if (unitcode == null) throw new ApiException($"UnitCode Not Found.");
                 await _unitCodeRepository.DeleteAsync(unitcode);
-                return new Response<string>(unitcode.Id);
+                return new Response<int>(unitcode.Id);
             }
         }
     }
